@@ -2,8 +2,11 @@ import { Outlet } from "react-router-dom";
 import TopFixedBar from "../compoenents/TopFixedBar";
 import { BottomFixedBarBlank, TopFixedBarBlank, WidthBlock, Wrapper } from "../styles/styled";
 import BottomFixedBar from "compoenents/BottomFixedBar";
+import { useEffect } from "react";
 
 function Root(){
+
+
     return (
         <Wrapper>
             <WidthBlock>

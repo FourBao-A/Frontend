@@ -4,6 +4,9 @@ import Login from "./pages/Login";
 import GlobalStyles from "./styles/GlobalStyles";
 import Search from "pages/Search";
 import SearchDetail from "pages/SerachDetail";
+import Forms from "pages/Forms";
+import MyPage from "pages/MyPage";
+import ReviseInfo from "pages/ReviseInfo";
 
 
 function App() {
@@ -15,6 +18,10 @@ function App() {
         <Route path="/" element={<Root/>}>
           <Route path="search" element={<Search/>}/>
           <Route path="search/:id" element={<SearchDetail/>}/>
+          <Route path="forms" element={<Forms/>}/>
+          <Route path="forms/:id" element={<Forms/>}/>
+          <Route path="myPage" element={<MyPage/>}/>
+          <Route path="reviseInfo" element={<ReviseInfo/>}/>
         </Route>
       </Routes>
     </BrowserRouter>
