@@ -4,20 +4,23 @@ import home from 'images/Home.svg'
 import post from 'images/Post.svg';
 import myPage from 'images/MyPage.svg';
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 
 function BottomFixedBar(){
+    const navigate = useNavigate();
+
     return (
         <ContainerBottomFixedBar>
-            <BtnBox>
+            <BtnBox onClick={()=>{navigate('/search')}}>
                 <img src={home}/>
                 <h1>홈</h1>
             </BtnBox>
-            <BtnBox>
+            <BtnBox onClick={()=>{navigate('/forms')}}>
                 <img src={post}/>
                 <h1>등록하기</h1>
             </BtnBox>
-            <BtnBox>
-                <img src={myPage}/>
+            <BtnBox onClick={()=>{navigate('/myPage')}}>   
+                <img style={{marginBottom:'2px'}} src={myPage}/>
                 <h1>마이페이지</h1>
             </BtnBox>
         </ContainerBottomFixedBar>
@@ -47,6 +50,8 @@ const BtnBox = styled(FlexBox)`
 flex-direction:column;
 justify-content:center;
 align-items:center;
+cursor:pointer;
+
 h1{
 color: #000;
 text-align: center;

@@ -1,11 +1,14 @@
 import styled from "styled-components";
 import { Container, FlexBox } from "../styles/styled"
 import logo from 'images/Favicon.png'
+import { useNavigate } from "react-router-dom";
 
 function TopFixedBar(){
+    const navigate=useNavigate();
+
     return(
         <ContainerTopFixedBar>
-            <LogoBox>
+            <LogoBox onClick={()=>{navigate('/search')}}>
                 <img src={logo}/>
                 <h1>북바오</h1>
             </LogoBox>
@@ -17,6 +20,7 @@ export default TopFixedBar
 
 const ContainerTopFixedBar = styled(Container)`
 position:fixed;
+z-index:20;
 width:100%;
 @media screen and (min-width:450px) {
     width:388px;
@@ -30,6 +34,7 @@ background: #FFF;
 const LogoBox = styled(FlexBox)`
 align-items:center;
 gap:4px;
+cursor:pointer;
 h1{
     color: #000;
     text-align: center;
