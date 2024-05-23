@@ -173,6 +173,8 @@ label{
     line-height: normal;
 
     padding:4px;
+
+    cursor:pointer;
 }
 `;
 const TextAreaBox=styled(InputBox)`
