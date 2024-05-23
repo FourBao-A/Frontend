@@ -11,7 +11,7 @@ function BottomFixedBar(){
 
     return (
         <ContainerBottomFixedBar>
-            <BtnBox onClick={()=>{navigate('/search')}}>
+            <BtnBox onClick={()=>{navigate('/')}}>
                 <img src={home}/>
                 <h1>홈</h1>
             </BtnBox>
