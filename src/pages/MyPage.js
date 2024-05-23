@@ -55,7 +55,7 @@ function MyPage(){
     return(
         <MainBoard>
             <ContainerInfo>
-                <h1>회원정보 : <span>노준호</span> 님 / 20011751</h1>
+                <h1>회원정보 : <span>노준호</span> 님 / <span>20011751</span></h1>
                 <DetailBtnBoxRevise onClick={()=>{navigate('/reviseInfo')}}>
                     <h1>수정하기</h1>
                     <img src={detailNext}/>
