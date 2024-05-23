@@ -7,11 +7,23 @@ import SearchDetail from "pages/SerachDetail";
 import Forms from "pages/Forms";
 import MyPage from "pages/MyPage";
 import ReviseInfo from "pages/ReviseInfo";
+import { Helmet } from "react-helmet";
 
 
 function App() {
+  console.log(window.location.host.includes('localhost'))
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={process.env.PUBLIC_URL}>
+      {window.location.host.includes('localhost')
+      ?
+      <Helmet>
+        <base href=""/>
+      </Helmet>
+      :
+      <Helmet>
+        <base href="/Frontend"/>
+      </Helmet>
+      }     
       <GlobalStyles/>
       <Routes>
         <Route path="/login" element={<Login/>}/>
