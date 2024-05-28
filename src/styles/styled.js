@@ -190,3 +190,23 @@ display:flex;
 justify-content:center;
 align-items:center;
 `;
+
+
+export const DetailBtnBoxBack = styled(DetailBtnBox)`
+position:absolute;
+top:16px;
+left:16px;
+z-index:30;
+h1{
+    color: #000;
+    text-align: right;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+img{
+    width:20px;
+    height:20px;
+}
+`;

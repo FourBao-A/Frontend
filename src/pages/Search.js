@@ -5,10 +5,13 @@ import { useEffect, useState } from "react";
 import search from 'images/Search.svg';
 import sampleBook from 'images/SampleBook.png';
 import detailNext from 'images/DetailNext.svg';
+import { useNavigate } from "react-router-dom";
 
 function Search(){
+    const navigate = useNavigate();
     const [searchList, setSearchList]=useState([
         {
+            id:2,
             name:'기초 신호 시스템',
             author:'이철희',
             publisher:'한빛 아카데미',
@@ -16,6 +19,7 @@ function Search(){
             thumbnail:sampleBook,
         },
         {
+            id:2,
             name:'기초 신호 시스템',
             author:'이철희',
             publisher:'한빛 아카데미',
@@ -23,6 +27,7 @@ function Search(){
             thumbnail:sampleBook,
         },
         {
+            id:2,
             name:'기초 신호 시스템',
             author:'이철희',
             publisher:'한빛 아카데미',
@@ -30,6 +35,7 @@ function Search(){
             thumbnail:sampleBook,
         },
         {
+            id:2,
             name:'기초 신호 시스템',
             author:'이철희',
             publisher:'한빛 아카데미',
@@ -37,6 +43,7 @@ function Search(){
             thumbnail:sampleBook,
         },
         {
+            id:2,
             name:'기초 신호 시스템',
             author:'이철희',
             publisher:'한빛 아카데미',
@@ -67,7 +74,7 @@ function Search(){
                                 <h3>{item.publisher}</h3>
                                 <h4>{item.price.toLocaleString()}원</h4>
                             </DetailTextBox>
-                            <DetailBtnBoxSearch>
+                            <DetailBtnBoxSearch onClick={()=>navigate(`search/${item.id}`)}>
                                 <h1>상세보기</h1>
                                 <img src={detailNext}/>
                             </DetailBtnBoxSearch>
