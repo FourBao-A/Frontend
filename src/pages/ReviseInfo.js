@@ -1,5 +1,5 @@
 import styled from "styled-components"
-import { Container, DetailBtnBox, InputBox, LongBtn} from "styles/styled"
+import { Container, DetailBtnBoxBack, InputBox, LongBtn} from "styles/styled"
 
 import back from 'images/Back.svg';
 import { useNavigate } from "react-router-dom";
@@ -58,24 +58,6 @@ input{
 }
 `;
 
-
-const DetailBtnBoxBack = styled(DetailBtnBox)`
-position:absolute;
-top:16px;
-left:16px;
-h1{
-    color: #000;
-    text-align: right;
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-}
-img{
-    width:20px;
-    height:20px;
-}
-`;
 
 const SubmitBtn = styled(LongBtn)`
 margin-top:60px;
