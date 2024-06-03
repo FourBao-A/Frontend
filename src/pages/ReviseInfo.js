@@ -12,7 +12,7 @@ function ReviseInfo(){
         <ContainerReviseInfo>
             <DetailBtnBoxBack onClick={()=>navigate(-1)}>
                 <img src={back}/>
-                <h1>뒤로가기</h1>
+                <p>뒤로가기</p>
             </DetailBtnBoxBack>
             <h1>회원정보 수정</h1>
             <LongInputBox>

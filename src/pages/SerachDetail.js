@@ -29,7 +29,7 @@ function SearchDetail(){
         <InfoMain>
             <DetailBtnBoxBackSearch onClick={()=>navigate(-1)}>
                 <img src={back}/>
-                <h1>뒤로가기</h1>
+                <p>뒤로가기</p>
             </DetailBtnBoxBackSearch>
             <Bookinfo>
                 <h1>{info.name}</h1>
@@ -194,6 +194,7 @@ const DetailBtnBoxBackSearch=styled(DetailBtnBoxBack)`
     height:100px;
     top:4px;
     left:12px;
+    z-index:10;
 
     align-self:flex-start;
 `;

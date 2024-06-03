@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { Container, FlexBox, InputBox, LongBtn, MainBoard } from "styles/styled"
 
 import imgBlank from 'images/ImgBlank.png';
-import s3Upload, { uploadS3 } from "utils/uploadS3";
+import { uploadS3 } from "utils/uploadS3";
 import { useLocation } from "react-router-dom";
 
 function Forms(){
