@@ -197,7 +197,11 @@ position:absolute;
 top:16px;
 left:16px;
 z-index:30;
-h1{
+
+
+p{
+    margin-top:1px;
+
     color: #000;
     text-align: right;
     font-size: 14px;
