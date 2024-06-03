@@ -2,13 +2,15 @@ import styled from "styled-components"
 import { DetailBox, DetailBtnBox, DetailList, DetailTextBox, FlexBox, MainBoard } from "styles/styled"
 import { useEffect, useState } from "react";
 
-import search from 'images/Search.svg';
+import searchIcon from 'images/Search.svg';
 import sampleBook from 'images/SampleBook.png';
 import detailNext from 'images/DetailNext.svg';
 import { useNavigate } from "react-router-dom";
+import { apiSearch } from "apis";
 
 function Search(){
     const navigate = useNavigate();
+    const [search,setSearch]=useState("");
     const [searchList, setSearchList]=useState([
         {
             id:2,
@@ -17,56 +19,45 @@ function Search(){
             publisher:'한빛 아카데미',
             price:10000,
             thumbnail:sampleBook,
+            sell:"NOT_SOLD"
         },
-        {
-            id:2,
-            name:'기초 신호 시스템',
-            author:'이철희',
-            publisher:'한빛 아카데미',
-            price:10000,
-            thumbnail:sampleBook,
-        },
-        {
-            id:2,
-            name:'기초 신호 시스템',
-            author:'이철희',
-            publisher:'한빛 아카데미',
-            price:10000,
-            thumbnail:sampleBook,
-        },
-        {
-            id:2,
-            name:'기초 신호 시스템',
-            author:'이철희',
-            publisher:'한빛 아카데미',
-            price:10000,
-            thumbnail:sampleBook,
-        },
-        {
-            id:2,
-            name:'기초 신호 시스템',
-            author:'이철희',
-            publisher:'한빛 아카데미',
-            price:10000,
-            thumbnail:sampleBook,
-        },
-
     ])
 
+    const fetchSearch = () => {
+        apiSearch(search)
+        .then(response=>{
+            console.log(response.data);
+            setSearchList(response.data.result);
+        })
+        .catch(error=>alert(error));
+    }
+    const onChange_search = (event) =>{
+        event.preventDefault();
+        setSearch(event.currentTarget.value);
+    }
     useEffect(()=>{
         window.scroll(0,0);
+        fetchSearch();
     },[])
+
+    console.log('search : ',search);
     return(
         <MainDiv>
             <SearchBox>
-                <input placeholder="검색할 책 이름을 입력해주세요!"/>
-                <img src={search}/>
+                <input 
+                value={search}
+                onChange={onChange_search} 
+                onKeyDown={(event)=>{
+                    if(event.key=='Enter') 
+                        return fetchSearch()}}
+                placeholder="검색할 책 이름을 입력해주세요!"/>
+                <img onClick={fetchSearch} src={searchIcon}/>
             </SearchBox>
         <MainBoard>
                 <SearchBoxBlank/>
                 <DetailList>
                     {searchList?.map((item,index)=>
-                        <DetailBox>
+                        <DetailBox key={item}>
                             <img src={item.thumbnail}/>
                             <DetailTextBox>
                                 <h1>{item.name}</h1>
