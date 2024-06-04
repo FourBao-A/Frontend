@@ -30,15 +30,10 @@ function Login() {
         setLoading(true);
         apiLogin(formData)
         .then(response=>{
-            console.log(response.data,response.headers.get('set-cookie'));
+            console.log(response.data,response.headers);
             if(response.data.isSuccess){
-                const jsessionId = response.headers;
-                if (jsessionId) {
-                    // 쿠키 설정 함수
-                    document.cookie = `JSESSIONID=${jsessionId}; path=/;`;
-                    console.log('after cookie : ',document.cookie);
-                    navigate('/');
-                }
+                sessionStorage.setItem('token',response.headers.authorization);
+                navigate('/');
             }
             else{
                 alert(response.data.message);
