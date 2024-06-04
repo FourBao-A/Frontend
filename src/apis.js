@@ -5,7 +5,6 @@ const instance = axios.create({
     withCredentials:true,
 })
 
-
 export const apiLogin = 
     (loginInfo)=>instance.post('/api/v1/login',loginInfo);
 
