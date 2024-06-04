@@ -2,12 +2,17 @@ import { WidthBlock, Wrapper } from "../styles/styled";
 import styled from "styled-components";
 import logo from 'images/Favicon.png'
 import {useState} from 'react';
+import { apiLogin } from "apis";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
+    const navigate = useNavigate();
+
+    const [loading,setLoading]=useState(false);
     const [formData, setFormData] = useState({
-        id: null,
+        id: '',
+        pw:'',
         email:'',
-        pw:''
     });
     const handleChange = (e) => {
         const {name,value} = e.target;
@@ -19,6 +24,26 @@ function Login() {
     const handleSubmit = (e) =>{
         e.preventDefault();
         // 데이터 제출하는 로직 작성 해야함 
+
+        console.log('submit FormData',formData);
+        console.log('before cookie : ',document.cookie);
+        setLoading(true);
+        apiLogin(formData)
+        .then(response=>{
+            console.log(response.data,response.headers);
+            if(response.data.isSuccess){
+                sessionStorage.setItem('token',response.headers.authorization);
+                navigate('/');
+            }
+            else{
+                alert(response.data.message);
+                setLoading(false);
+            }
+        })
+        .catch(error=>{
+            alert(error);
+            setLoading(false);
+        });
     }
 
     return (
@@ -26,10 +51,17 @@ function Login() {
             <LoginWidthBlock>
                 <LoginText>로그인</LoginText>
                 <LoginForm onSubmit={handleSubmit}>
-                    <LoginInput type="number" placeholder="학번" name="id" value={formData.id} on onChange={handleChange}></LoginInput>
-                    <LoginInput type="email" placeholder="이메일" name="email" value={formData.email} on onChange={handleChange}></LoginInput>
-                    <LoginInput type="password" placeholder="비밀번호" name="pw" value={formData.pw} on onChange={handleChange}></LoginInput>
+                    <LoginInput type="number" placeholder="학번" name="id" value={formData.id} onChange={handleChange}></LoginInput>
+                    <LoginInput type="email" placeholder="이메일" name="email" value={formData.email} onChange={handleChange}></LoginInput>
+                    <LoginInput type="password" placeholder="비밀번호" name="pw" value={formData.pw} onChange={handleChange}></LoginInput>
+                    
+                    {loading
+                    ?
+                    <LoadingBtn disabled={true}>로그인 중입니다...</LoadingBtn>
+                    :
                     <LoginBtn type="submit">로그인하기</LoginBtn>
+                    }
+
                 </LoginForm>
                 <LoginBao>
                         <img src={logo} alt="로고"/>
@@ -78,7 +110,7 @@ const LoginInput = styled.input`
     height: 46px;
     flex-shrink: 0;
     border-radius: 8px;
-    border: 1px solid #000;
+    border: 1px solid #BBB;
     background: #FAFAFA;
     color: var(--Base-Content-Body, #404040);
     font-size: 14px;
@@ -86,6 +118,7 @@ const LoginInput = styled.input`
     font-weight: 400;
     line-height: normal;
     padding-left: 14px;
+    outline:none;
     //숫자 조절 버튼 제거 
     &[type=number]::-webkit-inner-spin-button,
     &[type=number]::-webkit-outer-spin-button {
@@ -104,10 +137,24 @@ const LoginInput = styled.input`
 `
 const LoginBtn = styled.button`
     width: 320px;
-    height: 30px;
+    height: 40px;
     flex-shrink: 0;
     border-radius: 8px;
     background: #DC143C;
+    flex-shrink: 0;
+    color: #FFF;
+    text-align: center;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+`
+const LoadingBtn = styled.button`
+    width: 320px;
+    height: 40px;
+    flex-shrink: 0;
+    border-radius: 8px;
+    background: #AAA;
     flex-shrink: 0;
     color: #FFF;
     text-align: center;

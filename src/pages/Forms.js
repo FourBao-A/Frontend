@@ -3,41 +3,98 @@ import styled from "styled-components";
 import { Container, FlexBox, InputBox, LongBtn, MainBoard } from "styles/styled"
 
 import imgBlank from 'images/ImgBlank.png';
+import { uploadS3 } from "utils/uploadS3";
+import { useLocation } from "react-router-dom";
 
 function Forms(){
+    const location = useLocation();
     const [mode, setMode]=useState('');
     const [trade,setTrade]=useState('direct');
+    const [bookInfo, setBookInfo]=useState({
+        name:"",
+        author:"",
+        publisher:"",
+        price:'',
+        email:"",
+        dealWay:"DIRECT",
+        place:"",
+        thumbnail:"",
+        state:"",
+        askFor:""
+    });
     const onClick_trade = (event) => {
         event.preventDefault();
         const value = event.currentTarget.value;
-        if(value === 'direct')
+        if(value === 'direct'){
             setTrade('direct');
-        else
+            setBookInfo(prev=>({...prev,dealWay:"DIRECT"}))
+        }
+        else{
             setTrade('delivery');
+            setBookInfo(prev=>({...prev,dealWay:"DELIVERY"}))
+        }
+    }
+
+
+    const onChange_forms = (event) => {
+        const {name,value}=event.currentTarget;
+
+        setBookInfo(prev=>({
+            ...prev,
+            [name]:value
+        }))
+    }
+
+    const onChange_image = (event) => {
+        const files = event.currentTarget.files;
+
+        if(files){
+            console.log('files[0] : ',files[0])
+            uploadS3(files[0])
+            .then(src=>{
+                setBookInfo((prev)=>({...prev,thumbnail:src}))
+                console.log(src);
+            })
+            .catch(error=>console.log(error));
+        }
     }
 
     useEffect(()=>{
-        window.scroll(0,0);
-        if(window.location.pathname==='forms')
+        window.scrollTo(0,0);
+        const paths=window.location.pathname.split('/');
+        console.log(paths);
+        if(paths[paths.length-1]==='forms')
             setMode('a')
         else
             setMode('r');
-    },[])
+    },[location.pathname])
+
+
+    console.log(bookInfo);
     return(
         <MainBoard style={{gap:'8px'}}>
             <ContainerInput>
                 <LongInputBox>
                     <h2>책 이름</h2>
-                    <input/>
+                    <input 
+                    name = 'name'
+                    value = {bookInfo.name} 
+                    onChange={onChange_forms}/>
                 </LongInputBox>
                 <InputDiv>
                     <ShortInputBox>
                         <h2>저자</h2>
-                        <input/>
+                        <input 
+                        name = 'author'
+                        value = {bookInfo.author} 
+                        onChange={onChange_forms}/>
                     </ShortInputBox>
                      <ShortInputBox>
-                        <h2>저자</h2>
-                        <input/>
+                        <h2>출판사</h2>
+                        <input 
+                        name='publisher'
+                        value={bookInfo.publisher}
+                        onChange={onChange_forms}/>
                     </ShortInputBox>
                 </InputDiv>
             </ContainerInput>
@@ -46,11 +103,18 @@ function Forms(){
                 <InputDiv>
                     <ShortInputBox>
                         <h2>가격</h2>
-                        <input/>
+                        <input 
+                        name = 'price'
+                        type="number"
+                        value={bookInfo.price} 
+                        onChange={onChange_forms}/>
                     </ShortInputBox>
                      <ShortInputBox>
                         <h2>이메일(연락수단)</h2>
-                        <input/>
+                        <input 
+                        name='email'
+                        value={bookInfo.email} 
+                        onChange={onChange_forms}/>
                     </ShortInputBox>
                 </InputDiv>
                 <InputDiv>
@@ -69,7 +133,10 @@ function Forms(){
                     </ShortInputBox>
                      <ShortInputBox>
                         <h2>거래장소</h2>
-                        <input/>
+                        <input 
+                        name='place'
+                        value={bookInfo.place} 
+                        onChange={onChange_forms}/>
                     </ShortInputBox>
                 </InputDiv>
             </ContainerInput>
@@ -78,22 +145,30 @@ function Forms(){
                 <ImgInputBox>
                         <h2>이미지 첨부</h2>
                         <ImgInputBoxDiv>
-                            <img src={imgBlank}/>
+                            <img src={bookInfo.thumbnail ? bookInfo.thumbnail : imgBlank}/>
                             <label>
                                 이미지 추가하기
                                 <input 
                                 style={{display:'none'}}
-                                type="file"/>
+                                type="file"
+                                accept="image/*"
+                                onChange={onChange_image}/>
                             </label>
                         </ImgInputBoxDiv>
                 </ImgInputBox>
                 <LongInputBox>
-                    <h2>책 이름</h2>
-                    <input/>
+                    <h2>책 상태</h2>
+                    <input 
+                    name='state'
+                    value={bookInfo.state} 
+                    onChange={onChange_forms}/>
                 </LongInputBox>
                 <TextAreaBox>
                     <h2>기타 요청사항</h2>
-                    <textarea/>
+                    <textarea 
+                    name='askFor'
+                    value={bookInfo.askFor} 
+                    onChange={onChange_forms}/>
                 </TextAreaBox>
 
                 {mode==='a'
