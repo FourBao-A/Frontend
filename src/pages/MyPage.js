@@ -5,10 +5,8 @@ import detailNext from 'images/DetailNext.svg';
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { apiMyPage } from "apis";
-import useLogin from "hooks/useLogin";
 
 function MyPage(){
-    useLogin();
     const navigate = useNavigate();
     const [historyList, setHistoryList]=useState([
         {   
@@ -32,13 +30,13 @@ function MyPage(){
         })
         .catch(error=>alert(error));
     }
-
     useEffect(()=>{fetchMyPage()},[]);
+
     return(
         <MainBoard>
             <ContainerInfo>
                 <h1>회원정보 : <span>{userInfo.name}</span> 님 / <span>{userInfo.id}</span></h1>
-                <DetailBtnBoxRevise onClick={()=>{navigate('/reviseInfo')}}>
+                <DetailBtnBoxRevise onClick={()=>{navigate('/reviseinfo', {state:{id: userInfo.id, name: userInfo.name}})}}>
                     <h1>수정하기</h1>
                     <img src={detailNext}/>
                 </DetailBtnBoxRevise>
