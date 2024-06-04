@@ -24,7 +24,8 @@ function Search(){
     ])
 
     const fetchSearch = () => {
-        apiSearch(search)
+        const token = sessionStorage.getItem('token');
+        apiSearch(search,token)
         .then(response=>{
             console.log(response.data);
             setSearchList(response.data.result);
@@ -40,7 +41,9 @@ function Search(){
         fetchSearch();
     },[])
 
-    console.log('search : ',search);
+    console.log('search : ', search);
+    console.log('cookie : ', document.cookie);
+
     return(
         <MainDiv>
             <SearchBox>

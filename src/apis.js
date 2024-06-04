@@ -10,9 +10,12 @@ export const apiLogin =
     (loginInfo)=>instance.post('/api/v1/login',loginInfo);
 
 export const apiSearch=
-    (search) => instance.get('/api/v1/book/search',{
+    (search, token) => instance.get('/api/v1/book/search',{
         params:{
             search:search
+        },
+        headers:{
+            Authorization:token
         }
     })
 export const apiEnroll =
