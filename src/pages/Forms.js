@@ -6,8 +6,11 @@ import imgBlank from 'images/ImgBlank.png';
 import { uploadS3 } from "utils/uploadS3";
 import { useLocation, useParams } from "react-router-dom";
 import { apiEnroll, apiUpdate } from "apis";
+import useLogin from "hooks/useLogin";
 
 function Forms(){
+    useLogin();
+
     const location = useLocation();
     const id = useParams().id;
     const [mode, setMode]=useState('');

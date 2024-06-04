@@ -7,8 +7,10 @@ import sampleBook from 'images/SampleBook.png';
 import detailNext from 'images/DetailNext.svg';
 import { useNavigate } from "react-router-dom";
 import { apiSearch } from "apis";
+import useLogin from "hooks/useLogin";
 
 function Search(){
+    useLogin();
     const navigate = useNavigate();
     const [search,setSearch]=useState("");
     const [searchList, setSearchList]=useState([
