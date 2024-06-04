@@ -20,11 +20,13 @@ function MyPage(){
             thumbnail:sampleBook,
         },
     ])
-
+    const [userInfo, setUserInfo]=useState([])
+    
     const fetchMyPage = () => {
         const token=sessionStorage.getItem('token');
         apiMyPage(token)
         .then(response=>{
+            setUserInfo({ name: response.data.result.name, id: response.data.result.id });
             setHistoryList(response.data.result.histories);
             console.log(response.data);
         })
@@ -35,7 +37,7 @@ function MyPage(){
     return(
         <MainBoard>
             <ContainerInfo>
-                <h1>회원정보 : <span>노준호</span> 님 / <span>20011751</span></h1>
+                <h1>회원정보 : <span>{userInfo.name}</span> 님 / <span>{userInfo.id}</span></h1>
                 <DetailBtnBoxRevise onClick={()=>{navigate('/reviseInfo')}}>
                     <h1>수정하기</h1>
                     <img src={detailNext}/>
