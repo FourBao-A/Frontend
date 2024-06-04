@@ -1,50 +1,58 @@
 import styled from "styled-components"
-import { Container, DetailBtnBoxBack, InputBox, LongBtn} from "styles/styled"
-import {reviseInfo} from 'apis';
+import { Container, DetailBtnBoxBack, InputBox, LongBtn } from "styles/styled"
+import { reviseInfo } from 'apis';
 import back from 'images/Back.svg';
-import {useState} from 'react'
+import { useEffect, useState } from 'react'
 import { useNavigate } from "react-router-dom";
 import useLogin from "hooks/useLogin";
+import { useLocation } from 'react-router-dom';
 
-function ReviseInfo(){
+function ReviseInfo() {
     useLogin();
-    const navigate=useNavigate();
-    const [formData, setFormData] = useState({
-        name: '',
-        id:'',
-        email:'',
-    });
+    const location = useLocation();
+    const navigate = useNavigate();
+    const [formData, setFormData] = useState({name:'', id:'', email:''});
+
     const handleChange = (e) => {
-        const {name,value} = e.target;
-        setFormData(prev=>({
+        const { name, value } = e.target;
+        setFormData(prev => ({
             ...prev,
-            [name]:value,
+            [name]: value,
         }));
     };
-    const handleSubmit = (e) =>{
+    const handleSubmit = (e) => {
         e.preventDefault();
         // 데이터 제출하는 로직 작성 해야함     
-        
+
     }
 
-    return(
+    useEffect(() => {
+        setFormData({ 
+            name: location.state.name,
+            id: location.state.id,
+            email: ''
+        });
+
+    }, []);
+
+    return (
         <ContainerReviseInfo>
-            <DetailBtnBoxBack onClick={()=>navigate(-1)}>
-                <img src={back}/>
+            <DetailBtnBoxBack onClick={() => navigate(-1)}>
+                <img src={back} />
                 <p>뒤로가기</p>
             </DetailBtnBoxBack>
             <h1>회원정보 수정</h1>
             <LongInputBox>
                 <h2>이름</h2>
-                <input value={formData.name} name="name" onChange={handleChange}/>
+                <input value={formData.name} name="name" onChange={handleChange} disabled/>
             </LongInputBox>
             <LongInputBox>
                 <h2>학번</h2>
-                <input value={formData.id} name="id" onChange={handleChange}/>
+                <input value={formData.id} name="id" onChange={handleChange} disabled/>
             </LongInputBox>
             <LongInputBox>
                 <h2>이메일</h2>
-                <input value={formData.email} name="email" onChange={handleChange}/>
+                <input value={formData.email} name="email" onChange={handleChange} />
             </LongInputBox>
             <SubmitBtn onClick={handleSubmit}>수정하기</SubmitBtn>
         </ContainerReviseInfo>
@@ -70,7 +78,7 @@ const ContainerReviseInfo = styled(Container)`
     }
 `;
 
-const LongInputBox=styled(InputBox)`
+const LongInputBox = styled(InputBox)`
 input{
     width: 100%;
     height: 36px;
