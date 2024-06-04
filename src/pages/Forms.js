@@ -4,10 +4,12 @@ import { Container, FlexBox, InputBox, LongBtn, MainBoard } from "styles/styled"
 
 import imgBlank from 'images/ImgBlank.png';
 import { uploadS3 } from "utils/uploadS3";
-import { useLocation } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
+import { apiEnroll, apiUpdate } from "apis";
 
 function Forms(){
     const location = useLocation();
+    const id = useParams().id;
     const [mode, setMode]=useState('');
     const [trade,setTrade]=useState('direct');
     const [bookInfo, setBookInfo]=useState({
@@ -56,6 +58,28 @@ function Forms(){
                 console.log(src);
             })
             .catch(error=>console.log(error));
+        }
+    }
+
+    const onClick_submit = () => {
+        const token=sessionStorage.getItem('token');
+        let tmp=window.confirm('작성하신 내용대로 판매글을 등록/수정하시겠습니까?')
+        
+        if(tmp){
+            if(mode==='a'){
+                apiEnroll(bookInfo,token)
+                .then(response=>{
+                    alert(response.data.result);
+                })
+                .catch(error=>alert(error));
+            }
+            else{
+                apiUpdate(id,bookInfo,token)
+                .then(response=>{
+                    alert(response.data.result);
+                })
+                .catch(error=>alert(error));
+            }
         }
     }
 
@@ -173,9 +197,13 @@ function Forms(){
 
                 {mode==='a'
                 ?
-                <SubmitBtn>등록하기</SubmitBtn>
+                <SubmitBtn onClick={onClick_submit}>
+                    등록하기
+                </SubmitBtn>
                 :
-                <SubmitBtn>수정하기</SubmitBtn>
+                <SubmitBtn onClick={onClick_submit}>
+                    수정하기
+                </SubmitBtn>
                 }
                 
             </ContainerInput>

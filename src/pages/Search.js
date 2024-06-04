@@ -42,8 +42,6 @@ function Search(){
     },[])
 
     console.log('search : ', search);
-    console.log('cookie : ', document.cookie);
-
     return(
         <MainDiv>
             <SearchBox>

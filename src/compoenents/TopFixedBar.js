@@ -2,12 +2,15 @@ import styled from "styled-components";
 import { Container, FlexBox } from "../styles/styled"
 import logo from 'images/Favicon.png'
 import { useNavigate } from "react-router-dom";
+import LogOutBtn from "./LogOutBtn";
 
 function TopFixedBar(){
     const navigate=useNavigate();
 
     return(
         <ContainerTopFixedBar>
+            <LogOutBtn/>
+            
             <LogoBox onClick={()=>{navigate('/search')}}>
                 <img src={logo}/>
                 <h1>북바오</h1>
