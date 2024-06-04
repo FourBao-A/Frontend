@@ -59,6 +59,10 @@ function Forms(){
         }
     }
 
+    const onClick_submit = () => {
+
+    }
+
     useEffect(()=>{
         window.scrollTo(0,0);
         const paths=window.location.pathname.split('/');
