@@ -2,8 +2,9 @@ import styled from "styled-components"
 import { Container, DetailBox, DetailBtnBox, DetailList, DetailTextBox, MainBoard } from "styles/styled"
 import sampleBook from 'images/SampleBook.png';
 import detailNext from 'images/DetailNext.svg';
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { apiMyPage } from "apis";
 
 function MyPage(){
     const navigate = useNavigate();
@@ -16,42 +17,19 @@ function MyPage(){
             price:10000,
             thumbnail:sampleBook,
         },
-        {   
-            id:1,
-            name:'기초 신호 시스템',
-            author:'이철희',
-            publisher:'한빛 아카데미',
-            price:10000,
-            thumbnail:sampleBook,
-        },
-        {   
-            id:1,
-            name:'기초 신호 시스템',
-            author:'이철희',
-            publisher:'한빛 아카데미',
-            price:10000,
-            thumbnail:sampleBook,
-        },
-        {   
-            id:1,
-            name:'기초 신호 시스템',
-            author:'이철희',
-            publisher:'한빛 아카데미',
-            price:10000,
-            thumbnail:sampleBook,
-        },
-        {   
-            id:1,
-            name:'기초 신호 시스템',
-            author:'이철희',
-            publisher:'한빛 아카데미',
-            price:10000,
-            thumbnail:sampleBook,
-        },
-
     ])
 
+    const fetchMyPage = () => {
+        const token=sessionStorage.getItem('token');
+        apiMyPage(token)
+        .then(response=>{
+            setHistoryList(response.data.result.histories);
+            console.log(response.data);
+        })
+        .catch(error=>alert(error));
+    }
 
+    useEffect(()=>{fetchMyPage()},[]);
     return(
         <MainBoard>
             <ContainerInfo>
