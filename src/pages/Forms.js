@@ -6,8 +6,11 @@ import imgBlank from 'images/ImgBlank.png';
 import { uploadS3 } from "utils/uploadS3";
 import { useLocation, useParams } from "react-router-dom";
 import { apiEnroll, apiUpdate } from "apis";
+import useLogin from "hooks/useLogin";
 
 function Forms(){
+    useLogin();
+
     const location = useLocation();
     const id = useParams().id;
     const [mode, setMode]=useState('');
@@ -155,9 +158,10 @@ function Forms(){
                             selected={trade==='delivery'}> 택배 </TradeBtn>
                         </BtnBox>
                     </ShortInputBox>
-                     <ShortInputBox>
+                     <ShortInputBox disabled={trade==='delivery'}>
                         <h2>거래장소</h2>
                         <input 
+                        disabled={trade==='delivery'}
                         name='place'
                         value={bookInfo.place} 
                         onChange={onChange_forms}/>
@@ -237,6 +241,7 @@ input{
 const ShortInputBox=styled(InputBox)`
 width:50%;
 input{
+    background-color:${props=>props.disabled && '#CCC'};
     width: 100%;
     height: 36px;
 }

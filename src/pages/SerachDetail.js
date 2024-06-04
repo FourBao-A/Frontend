@@ -4,8 +4,10 @@ import sampleBook from 'images/SampleBook.png'
 import { DetailBtnBoxBack, FlexBox } from "styles/styled";
 import back from 'images/Back.svg';
 import { useNavigate } from "react-router-dom";
+import useLogin from "hooks/useLogin";
 
 function SearchDetail(){
+    useLogin();
     const navigate = useNavigate();
 
     const [info, setInfo]=useState({

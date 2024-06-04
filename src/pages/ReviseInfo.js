@@ -4,8 +4,10 @@ import {reviseInfo} from 'apis';
 import back from 'images/Back.svg';
 import {useState} from 'react'
 import { useNavigate } from "react-router-dom";
+import useLogin from "hooks/useLogin";
 
 function ReviseInfo(){
+    useLogin();
     const navigate=useNavigate();
     const [formData, setFormData] = useState({
         name: '',

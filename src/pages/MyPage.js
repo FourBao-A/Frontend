@@ -5,8 +5,10 @@ import detailNext from 'images/DetailNext.svg';
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { apiMyPage } from "apis";
+import useLogin from "hooks/useLogin";
 
 function MyPage(){
+    useLogin();
     const navigate = useNavigate();
     const [historyList, setHistoryList]=useState([
         {   
