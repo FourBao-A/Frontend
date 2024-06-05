@@ -5,6 +5,13 @@ const instance = axios.create({
     withCredentials:true,
 })
 
+export const apiReviseEmail = (email,token) => 
+    instance.patch('/api/v1/user/update-email', { email },{
+        headers:{
+            Authorization:token,
+        }
+    });
+
 export const apiLogin = 
     (loginInfo)=>instance.post('/api/v1/login',loginInfo);
 
