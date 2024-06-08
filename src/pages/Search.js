@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 
 import searchIcon from 'images/Search.svg';
 import sampleBook from 'images/SampleBook.png';
+import bookBlank from 'images/BookBlank.png';
 import detailNext from 'images/DetailNext.svg';
 import { useNavigate } from "react-router-dom";
 import { apiSearch } from "apis";
@@ -64,8 +65,8 @@ function Search(){
                 <SearchBoxBlank/>
                 <DetailList>
                     {searchList?.map((item,index)=>
-                        <DetailBox key={item}>
-                            <img src={item.thumbnail}/>
+                        <DetailBox key={item.id}>
+                            <img src={item.thumbnail ? item.thumbnail : bookBlank}/>
                             <DetailTextBox>
                                 <h1>{item.name}</h1>
                                 <h2>{item.author} 지음</h2>

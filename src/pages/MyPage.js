@@ -1,6 +1,6 @@
 import styled from "styled-components"
 import { Container, DetailBox, DetailBtnBox, DetailList, DetailTextBox, MainBoard } from "styles/styled"
-import sampleBook from 'images/SampleBook.png';
+import bookBlank from 'images/BookBlank.png';
 import detailNext from 'images/DetailNext.svg';
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -15,7 +15,7 @@ function MyPage(){
             author:'이철희',
             publisher:'한빛 아카데미',
             price:10000,
-            thumbnail:sampleBook,
+            thumbnail:bookBlank,
         },
     ])
     const [userInfo, setUserInfo]=useState([])
@@ -71,7 +71,7 @@ function MyPage(){
             <DetailList>
                     {historyList?.map((item,index)=>
                         <DetailBox key={item.id}>
-                            <img src={item.thumbnail}/>
+                            <img src={item.thumbnail ? item.thumbnail : bookBlank}/>
                             <DetailTextBox>
                                 <h1>{item.name}</h1>
                                 <h2>{item.author} 지음</h2>

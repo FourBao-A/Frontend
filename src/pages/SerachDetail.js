@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import {useEffect, useState} from 'react';
-import sampleBook from 'images/SampleBook.png'
+import bookBlank from 'images/BookBlank.png';
 import { DetailBtnBoxBack, FlexBox } from "styles/styled";
 import back from 'images/Back.svg';
 import { useNavigate,useParams } from "react-router-dom";
@@ -14,9 +14,9 @@ function SearchDetail(){
     const [info, setInfo]=useState({
             name:'',
             author:'',
-            publisher:'한빛 ',
-            price:10000,
-            thumbnail:sampleBook,
+            publisher:'',
+            price:0,
+            thumbnail:'',
             email:'',
             askFor:'',
             state:'',
@@ -46,25 +46,27 @@ function SearchDetail(){
                 <p>뒤로가기</p>
             </DetailBtnBoxBackSearch>
             <Bookinfo>
+                <img src={info.thumbnail ? info.thumbnail : bookBlank} />
                 <h1>{info.name}</h1>
                 <h2>{info.author} 지음</h2>
                 <h3>{info.publisher}</h3>
                 <h4>{info.price.toLocaleString()}원</h4>
             </Bookinfo>
             <Emailinfo>
-                <h1>요청사항 : {info.askFor}</h1>
-                <h1>이메일 : {info.email}</h1>
+                <h1><span>요청사항</span> : {info.askFor}</h1>
+                <h1><span>이메일</span> : {info.email}</h1>
+                <h1><span>거래방식</span> : {info.dealWay==='DIRECT' ? '직거래' : '택배'}</h1>
+                {
+                    info.dealWay==='DIRECT'
+                    &&
+                    <h1><span>거래장소</span> : {info.dealPlace} </h1>
+                }
             </Emailinfo>
             <BookState>
                 <p>책 상태 (필기 흔적, 표지 상태 등)</p>
                 <StateInfo>
                     <p>{info.state}</p>
                 </StateInfo>
-                <TradeInfo>
-                    <img src={info.thumbnail} />
-                    <TradeWay><p>{info.dealWay}</p></TradeWay>
-                    <TradeWay><p>{info.place}</p></TradeWay>
-                </TradeInfo>
             </BookState>
         </InfoMain>
     )
@@ -74,7 +76,6 @@ export default SearchDetail
 
 const InfoMain = styled.div`
     width: 390px;
-    height: 600px;
     flex-shrink: 0;
 
     display:flex;
@@ -86,7 +87,7 @@ const InfoMain = styled.div`
 
 const Bookinfo = styled.div`
     width: 390px;
-    padding: 18px;
+    padding: 24px;
     padding-bottom:18px;
     background: #FFF;
 
@@ -97,7 +98,6 @@ const Bookinfo = styled.div`
     gap:4px;
     h1{
         color: #000;
-        font-family: Pretendard;
         font-size: 18px;
         font-style: normal;
         font-weight: 700;
@@ -105,7 +105,6 @@ const Bookinfo = styled.div`
     }
     h2{
         color: #000;
-        font-family: Pretendard;
         font-size: 14px;
         font-style: normal;
         font-weight: 400;
@@ -113,7 +112,6 @@ const Bookinfo = styled.div`
     }
     h3{
         color: #000;
-        font-family: Pretendard;
         font-size: 12px;
         font-style: normal;
         font-weight: 400;
@@ -123,40 +121,54 @@ const Bookinfo = styled.div`
     }
     h4{
         color: #DC143C;
-        font-family: Pretendard;
         font-size: 16px;
         font-style: normal;
         font-weight: 400;
         line-height: normal;
     }
-`
+    img{
+        align-self:center;
+        width:150px;
+        height:200px;
+        margin-bottom:12px;
+        border-radius:8px;
+    }
+`;
 
-const Emailinfo = styled.div`
+const Emailinfo = styled(FlexBox)`
     width: 390px;
-    height: 76px;
-    padding: 17px;
+    padding: 16px 24px;
     background: #FFF;
+
+    flex-direction:column;
+    justify-content:flex-start;
+    gap:4px;
+
     h1{
         color: #000;
-        font-family: Pretendard;
-        font-size: 15px;
+        font-size: 14px;
         font-style: normal;
-        font-weight: 400;
+        font-weight: 600;
         line-height: normal;
-        margin-bottom:4px;
+        span{
+            color: #DC143C;
+            font-size: 14px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: normal;
+        }
     }
-`
+`;
+
 const BookState = styled.div`
     width: 390px;
-    height: 380px;
-    padding: 8px 17px 8px 17px;
+    padding: 16px 18px;
     background: #FFF;
     align-items: center;
     justify-content: center;
     p{
         color: #000;
-        font-family: Pretendard;
-        font-size: 15px;
+        font-size: 14px;
         font-style: normal;
         font-weight: 400;
         line-height: normal;
@@ -172,7 +184,6 @@ const StateInfo = styled.div`
     padding: 12px;
     p{
         color: #000;
-        font-family: Pretendard;
         font-size: 12px;
         font-style: normal;
         font-weight: 400;
@@ -181,33 +192,14 @@ const StateInfo = styled.div`
 `
 const TradeInfo = styled.div`
     width:100%;
-    height: 190px;
-
+    height:100px;
     display: flex;
     justify-content:space-between;
-    align-items: center;
-    img{
-        max-height: 100px;
-        max-width: 100px;
-        min-height: 50px;
-        min-width: 50px;
-    }
+    align-items: flex-start;
 `;
-
-const TradeWay = styled.div`
-    width: 99px;
-    height: 36px;
-    padding-top: 8px;
-    border-radius:12px;
-
-    text-align:center;
-    background: #EEE;
-`;
-
 
 const DetailBtnBoxBackSearch=styled(DetailBtnBoxBack)`
     position:relative;
-    height:100px;
     top:4px;
     left:12px;
     z-index:10;

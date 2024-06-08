@@ -60,12 +60,12 @@ function ReviseInfo() {
             </DetailBtnBoxBack>
             <h1>회원정보 수정</h1>
             <LongInputBox>
-                <h2>이름</h2>
-                <input value={formData.name} name="name"  disabled/>
+                <h2>이름 (수정불가)</h2>
+                <input style={{color:'#AAA'}} value={formData.name} name="name" disabled/>
             </LongInputBox>
             <LongInputBox>
-                <h2>학번</h2>
-                <input value={formData.id} name="id" disabled/>
+                <h2>학번 (수정불가)</h2>
+                <input style={{color:'#AAA'}} value={formData.id} name="id" disabled/>
             </LongInputBox>
             <LongInputBox>
                 <h2>이메일</h2>
