@@ -1,6 +1,6 @@
 import styled from "styled-components"
 import { Container, DetailBtnBoxBack, InputBox, LongBtn } from "styles/styled"
-import { reviseInfo } from 'apis';
+import { apiReviseEmail } from 'apis';
 import back from 'images/Back.svg';
 import { useEffect, useState } from 'react'
 import { useNavigate } from "react-router-dom";
@@ -12,18 +12,32 @@ function ReviseInfo() {
     const location = useLocation();
     const navigate = useNavigate();
     const [formData, setFormData] = useState({name:'', id:'', email:''});
-
     const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData(prev => ({
+        const {name,value} = e.target;
+        setFormData(prev=>({
             ...prev,
-            [name]: value,
+            [name]:value,
         }));
     };
     const handleSubmit = (e) => {
         e.preventDefault();
-        // 데이터 제출하는 로직 작성 해야함     
-        sessionStorage.setItem('email',formData.email)
+        // 데이터 제출하는 로직 작성 해야함
+        const token=sessionStorage.getItem('token');     
+        apiReviseEmail(formData.email,token)
+        .then(response=>{
+            if(response.data.isSuccess){
+                alert('이메일 수정이 성공적으로 완료되었습니다!');
+                console.log(response.data.result);
+                navigate(-1);
+            }
+            else{
+                alert('수정 실패 | 이메일 형식을 확인해주세요!');
+            }
+        }
+        )
+        .catch(error=>{
+            alert('error');
+        });
     }
 
     useEffect(() => {
@@ -33,7 +47,7 @@ function ReviseInfo() {
             email: sessionStorage.getItem('email')
         });
 
-    }, []);
+    }, [location.state]);
 
     return (
         <ContainerReviseInfo>
@@ -44,11 +58,11 @@ function ReviseInfo() {
             <h1>회원정보 수정</h1>
             <LongInputBox>
                 <h2>이름</h2>
-                <input value={formData.name} name="name" onChange={handleChange} disabled/>
+                <input value={formData.name} name="name"  disabled/>
             </LongInputBox>
             <LongInputBox>
                 <h2>학번</h2>
-                <input value={formData.id} name="id" onChange={handleChange} disabled/>
+                <input value={formData.id} name="id" disabled/>
             </LongInputBox>
             <LongInputBox>
                 <h2>이메일</h2>
