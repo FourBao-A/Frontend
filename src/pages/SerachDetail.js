@@ -53,7 +53,7 @@ function SearchDetail(){
                 <h4>{info.price.toLocaleString()}원</h4>
             </Bookinfo>
             <Emailinfo>
-                <h1><span>요청사항</span> : {info.askFor}</h1>
+                <h1><span>책 상태</span> : {info.state}</h1>
                 <h1><span>이메일</span> : {info.email}</h1>
                 <h1><span>거래방식</span> : {info.dealWay==='DIRECT' ? '직거래' : '택배'}</h1>
                 {
@@ -63,9 +63,9 @@ function SearchDetail(){
                 }
             </Emailinfo>
             <BookState>
-                <p>책 상태 (필기 흔적, 표지 상태 등)</p>
+                <p>요청사항</p>
                 <StateInfo>
-                    <p>{info.state}</p>
+                    <p>{info.askFor}</p>
                 </StateInfo>
             </BookState>
         </InfoMain>
@@ -183,8 +183,8 @@ const StateInfo = styled.div`
     background: #EEE;
     padding: 12px;
     p{
-        color: #000;
-        font-size: 12px;
+        color: #555;
+        font-size: 14px;
         font-style: normal;
         font-weight: 400;
         line-height: normal;
