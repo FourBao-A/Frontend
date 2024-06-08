@@ -4,13 +4,14 @@ import { Container, FlexBox, InputBox, LongBtn, MainBoard } from "styles/styled"
 
 import imgBlank from 'images/ImgBlank.png';
 import { uploadS3 } from "utils/uploadS3";
-import { useLocation, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { apiEnroll, apiGetInfo, apiUpdate } from "apis";
 import useLogin from "hooks/useLogin";
 
 function Forms(){
     useLogin();
 
+    const navigate = useNavigate();
     const location = useLocation();
     const id = useParams().id;
 
