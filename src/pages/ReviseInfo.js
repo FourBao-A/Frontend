@@ -28,6 +28,7 @@ function ReviseInfo() {
             if(response.data.isSuccess){
                 alert('이메일 수정이 성공적으로 완료되었습니다!');
                 console.log(response.data.result);
+                sessionStorage.setItem('email',formData.email)
                 navigate(-1);
             }
             else{
@@ -46,7 +47,6 @@ function ReviseInfo() {
             id: location.state.id,
             email: sessionStorage.getItem('email')
         });
-
     }, [location.state]);
 
     return (

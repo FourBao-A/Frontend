@@ -36,7 +36,12 @@ function Forms(){
             setTrade(response.data.result.dealWay);
             console.log('apiGetInfo: ',response.data)
         })
-        .catch(error=>console.log(error));
+        .catch(error=>
+            {
+            alert('통신 오류 또는 세션만료입니다.');
+            sessionStorage.clear();
+            navigate('/login');
+            });
     }
 
     const onClick_trade = (event) => {

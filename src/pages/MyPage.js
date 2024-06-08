@@ -28,7 +28,11 @@ function MyPage(){
             setHistoryList(response.data.result.histories);
             console.log(response.data);
         })
-        .catch(error=>alert(error));
+        .catch(error=>{
+            alert('통신 오류 또는 세션만료입니다.');
+            sessionStorage.clear();
+            navigate('/login');
+        });
     }
     const onClick_delete = (event) => {
         event.preventDefault();
