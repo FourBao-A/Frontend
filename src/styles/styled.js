@@ -8,7 +8,7 @@ export const Wrapper = styled(FlexBox)`
 position:relative;
 
 flex-direction:column;
-justify-content:center;
+justify-content:flex-start;
 align-items:center;
 `;
 
@@ -150,7 +150,7 @@ gap:2px;
 h2{
     margin-left:8px;
 
-    color: #555;
+    color: #777;
     font-size: 14px;
     font-style: normal;
     font-weight: 400;
@@ -159,7 +159,7 @@ h2{
 input{
     flex-shrink: 0;
 
-    color: #AAA;
+    color: #555;
     font-size: 14px;
     font-style: normal;
     font-weight: 400;
