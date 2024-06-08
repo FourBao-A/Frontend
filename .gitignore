@@ -12,6 +12,7 @@
 /build
 
 # misc
+.bookBao.pem
 .env
 .DS_Store
 .env.local

@@ -33,6 +33,7 @@ function Login() {
             console.log(response.data,response.headers);
             if(response.data.isSuccess){
                 sessionStorage.setItem('token',response.headers.authorization);
+                sessionStorage.setItem('email',formData.email);
                 navigate('/');
             }
             else{

@@ -44,7 +44,7 @@ function ReviseInfo() {
         setFormData({ 
             name: location.state.name,
             id: location.state.id,
-            email: ''
+            email: sessionStorage.getItem('email')
         });
 
     }, [location.state]);
