@@ -50,3 +50,13 @@ export const apiDelete =
             id:id
         }
     })
+
+export const apiGetInfo =
+    (token,id) => instance.get('/api/v1/book/detail',{
+        headers:{
+            Authorization:token
+        },
+        params:{
+            id:id
+        }
+    })

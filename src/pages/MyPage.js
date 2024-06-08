@@ -66,7 +66,7 @@ function MyPage(){
 
             <DetailList>
                     {historyList?.map((item,index)=>
-                        <DetailBox>
+                        <DetailBox key={item.id}>
                             <img src={item.thumbnail}/>
                             <DetailTextBox>
                                 <h1>{item.name}</h1>

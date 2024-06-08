@@ -5,7 +5,7 @@ import { Container, FlexBox, InputBox, LongBtn, MainBoard } from "styles/styled"
 import imgBlank from 'images/ImgBlank.png';
 import { uploadS3 } from "utils/uploadS3";
 import { useLocation, useParams } from "react-router-dom";
-import { apiEnroll, apiUpdate } from "apis";
+import { apiEnroll, apiGetInfo, apiUpdate } from "apis";
 import useLogin from "hooks/useLogin";
 
 function Forms(){
@@ -13,8 +13,9 @@ function Forms(){
 
     const location = useLocation();
     const id = useParams().id;
+
     const [mode, setMode]=useState('');
-    const [trade,setTrade]=useState('direct');
+    const [trade,setTrade]=useState('DIRECT');
     const [bookInfo, setBookInfo]=useState({
         name:"",
         author:"",
@@ -27,20 +28,29 @@ function Forms(){
         state:"",
         askFor:""
     });
+    const fetchInfo = () => {
+        const token = sessionStorage.getItem('token');
+        apiGetInfo(token,id)
+        .then(response=>{
+            setBookInfo(response.data.result);
+            setTrade(response.data.result.dealWay);
+            console.log('apiGetInfo: ',response.data)
+        })
+        .catch(error=>console.log(error));
+    }
+
     const onClick_trade = (event) => {
         event.preventDefault();
         const value = event.currentTarget.value;
-        if(value === 'direct'){
-            setTrade('direct');
+        if(value === 'DIRECT'){
+            setTrade('DIRECT');
             setBookInfo(prev=>({...prev,dealWay:"DIRECT"}))
         }
         else{
-            setTrade('delivery');
+            setTrade('DELIVERY');
             setBookInfo(prev=>({...prev,dealWay:"DELIVERY"}))
         }
     }
-
-
     const onChange_forms = (event) => {
         const {name,value}=event.currentTarget;
 
@@ -92,8 +102,10 @@ function Forms(){
         console.log(paths);
         if(paths[paths.length-1]==='forms')
             setMode('a')
-        else
+        else{
             setMode('r');
+            fetchInfo();
+        }
     },[location.pathname])
 
 
@@ -150,18 +162,18 @@ function Forms(){
                         <BtnBox>
                             <TradeBtn
                             onClick = {onClick_trade}
-                            value = 'direct'
-                            selected={trade==='direct'}> 직거래 </TradeBtn>
+                            value = 'DIRECT'
+                            selected={trade==='DIRECT'}> 직거래 </TradeBtn>
                             <TradeBtn
                             onClick={onClick_trade}
-                            value = 'delivery'
-                            selected={trade==='delivery'}> 택배 </TradeBtn>
+                            value = 'DELIVERY'
+                            selected={trade==='DELIVERY'}> 택배 </TradeBtn>
                         </BtnBox>
                     </ShortInputBox>
-                     <ShortInputBox disabled={trade==='delivery'}>
+                     <ShortInputBox disabled={trade==='DELIVERY'}>
                         <h2>거래장소</h2>
                         <input 
-                        disabled={trade==='delivery'}
+                        disabled={trade==='DELIVERY'}
                         name='place'
                         value={bookInfo.place} 
                         onChange={onChange_forms}/>
