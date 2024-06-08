@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
-import { Container, FlexBox, InputBox, LongBtn, MainBoard } from "styles/styled"
+import { Container, DetailBtnBoxBack, FlexBox, InputBox, LongBtn, MainBoard } from "styles/styled"
 
 import imgBlank from 'images/ImgBlank.png';
+import back from 'images/Back.svg';
+
 import { uploadS3 } from "utils/uploadS3";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { apiEnroll, apiGetInfo, apiUpdate } from "apis";
@@ -119,6 +121,11 @@ function Forms(){
     console.log(bookInfo);
     return(
         <MainBoard style={{gap:'8px'}}>
+            <DetailBtnBoxBackForm
+                    onClick={() => navigate(-1)}>
+                    <img src={back} />
+                    <p>뒤로가기</p>
+            </DetailBtnBoxBackForm>
             <ContainerInput>
                 <LongInputBox>
                     <h2>책 이름</h2>
@@ -239,6 +246,7 @@ function Forms(){
 export default Forms
 
 const ContainerInput = styled(Container)`
+position:relative;
 padding:28px 36px;
 gap:8px;
 h1{
@@ -356,4 +364,11 @@ const TradeBtn = styled.button`
 
 const SubmitBtn = styled(LongBtn)`
 margin-top:20px;
+`;
+
+const DetailBtnBoxBackForm = styled(DetailBtnBoxBack)`
+position:relative;
+align-self:flex-start;
+top:4px;
+left:8px;
 `;
