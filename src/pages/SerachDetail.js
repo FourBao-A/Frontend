@@ -3,29 +3,41 @@ import {useEffect, useState} from 'react';
 import sampleBook from 'images/SampleBook.png'
 import { DetailBtnBoxBack, FlexBox } from "styles/styled";
 import back from 'images/Back.svg';
-import { useNavigate } from "react-router-dom";
+import { useNavigate,useParams } from "react-router-dom";
 import useLogin from "hooks/useLogin";
+import { apiGetInfo } from "apis";
 
 function SearchDetail(){
     useLogin();
     const navigate = useNavigate();
-
+    const id = useParams().id;
     const [info, setInfo]=useState({
-            name:'기초 신호 시스템',
-            author:'이철희',
-            publisher:'한빛 아카데미',
+            name:'',
+            author:'',
+            publisher:'한빛 ',
             price:10000,
             thumbnail:sampleBook,
-            email:'lee08tain@gmail.com',
-            askFor:'27일 오후 이전에는 바빠요 못 만나요',
-            state:'필기 흔적 없음, 책 표지 찍힘 없음',
-            dealWay:'직거래',
-            place:'학교 정문',
+            email:'',
+            askFor:'',
+            state:'',
+            dealWay:'',
+            place:'',
         });
-
+    
     useEffect(()=>{
         window.scroll(0,0);
+        fetchInfo();
     },[]);
+
+    const fetchInfo = () => {
+        const token = sessionStorage.getItem('token');
+        apiGetInfo(token,id)
+        .then(response=>{
+            setInfo(response.data.result);
+            console.log('apiGetInfo: ',response.data)
+        })
+        .catch(error=>console.log(error));
+    }
 
     return(
         <InfoMain>
@@ -176,7 +188,9 @@ const TradeInfo = styled.div`
     align-items: center;
     img{
         max-height: 100px;
-        width: auto;
+        max-width: 100px;
+        min-height: 50px;
+        min-width: 50px;
     }
 `;
 
