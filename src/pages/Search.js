@@ -35,7 +35,7 @@ function Search(){
         .catch(error=>{
             alert('통신 오류 또는 세션만료입니다.');
             sessionStorage.clear();
-            navigate('/');
+            navigate('/login');
         });
     }
     const onChange_search = (event) =>{

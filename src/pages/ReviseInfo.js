@@ -22,12 +22,16 @@ function ReviseInfo() {
     const handleSubmit = (e) => {
         e.preventDefault();
         // 데이터 제출하는 로직 작성 해야함
-        const token=sessionStorage.getItem('token');     
+        const token=sessionStorage.getItem('token');
+        let tmp = window.confirm('작성하신 이메일대로 수정하시겠습니까?')    
+        
+        if(tmp)
         apiReviseEmail(formData.email,token)
         .then(response=>{
             if(response.data.isSuccess){
                 alert('이메일 수정이 성공적으로 완료되었습니다!');
                 console.log(response.data.result);
+                sessionStorage.setItem('email',formData.email)
                 navigate(-1);
             }
             else{
@@ -46,7 +50,6 @@ function ReviseInfo() {
             id: location.state.id,
             email: sessionStorage.getItem('email')
         });
-
     }, [location.state]);
 
     return (
