@@ -25,7 +25,7 @@ function MyPage(){
         apiMyPage(token)
         .then(response=>{
             setUserInfo({ name: response.data.result.name, id: response.data.result.id });
-            setHistoryList(response.data.result.histories);
+            setHistoryList(response.data.result.histories.sort((a,b)=>Number(b.id)-Number(a.id)));
             console.log(response.data);
         })
         .catch(error=>{

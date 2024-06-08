@@ -31,7 +31,7 @@ function Search(){
         apiSearch(search,token)
         .then(response=>{
             console.log(response.data);
-            setSearchList(response.data.result);
+            setSearchList(response.data.result.sort((a,b)=>Number(b.id)-Number(a.id)));
         })
         .catch(error=>{
             alert('통신 오류 또는 세션만료입니다.');
