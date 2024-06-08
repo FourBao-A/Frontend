@@ -90,6 +90,7 @@ function Forms(){
                 apiUpdate(id,bookInfo,token)
                 .then(response=>{
                     alert(response.data.result);
+                    fetchInfo();
                 })
                 .catch(error=>alert(error));
             }

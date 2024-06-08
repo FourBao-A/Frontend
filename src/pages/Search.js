@@ -32,7 +32,11 @@ function Search(){
             console.log(response.data);
             setSearchList(response.data.result);
         })
-        .catch(error=>alert(error));
+        .catch(error=>{
+            alert('통신 오류 또는 세션만료입니다.');
+            sessionStorage.clear();
+            navigate('/');
+        });
     }
     const onChange_search = (event) =>{
         event.preventDefault();

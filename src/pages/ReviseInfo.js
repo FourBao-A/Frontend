@@ -23,14 +23,14 @@ function ReviseInfo() {
     const handleSubmit = (e) => {
         e.preventDefault();
         // 데이터 제출하는 로직 작성 해야함     
-
+        sessionStorage.setItem('email',formData.email)
     }
 
     useEffect(() => {
         setFormData({ 
             name: location.state.name,
             id: location.state.id,
-            email: ''
+            email: sessionStorage.getItem('email')
         });
 
     }, []);
