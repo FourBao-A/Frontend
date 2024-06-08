@@ -150,7 +150,7 @@ gap:2px;
 h2{
     margin-left:8px;
 
-    color: #777;
+    color: #555;
     font-size: 14px;
     font-style: normal;
     font-weight: 400;
@@ -159,7 +159,7 @@ h2{
 input{
     flex-shrink: 0;
 
-    color: #555;
+    color: #777;
     font-size: 14px;
     font-style: normal;
     font-weight: 400;

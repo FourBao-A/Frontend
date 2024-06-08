@@ -319,7 +319,7 @@ textarea{
 
     flex-shrink: 0;
 
-    color: #AAA;
+    color: #777;
     font-size: 14px;
     font-style: normal;
     font-weight: 400;
