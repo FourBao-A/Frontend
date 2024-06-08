@@ -4,7 +4,7 @@ import sampleBook from 'images/SampleBook.png';
 import detailNext from 'images/DetailNext.svg';
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { apiMyPage } from "apis";
+import { apiDelete, apiMyPage } from "apis";
 
 function MyPage(){
     const navigate = useNavigate();
@@ -30,6 +30,25 @@ function MyPage(){
         })
         .catch(error=>alert(error));
     }
+    const onClick_delete = (event) => {
+        event.preventDefault();
+        const id = Number(event.currentTarget.id);
+        const token = sessionStorage.getItem('token');
+
+        let tmp = window.confirm('해당 판매글을 삭제하시겠습니까?');
+        if(tmp){
+            apiDelete(token,id)
+            .then(response => 
+                {
+                    alert(response.data.result)
+                    fetchMyPage()
+                })
+            .catch(error=>alert(error));
+        }
+    }
+
+
+
     useEffect(()=>{fetchMyPage()},[]);
 
     return(
@@ -61,6 +80,8 @@ function MyPage(){
                                     onClick={()=>{navigate(`/forms/${item.id}`)}}
                                     mode='revise'>수정</DetailBtn>
                                     <DetailBtn 
+                                    id={item.id}
+                                    onClick={onClick_delete}
                                     mode='delete'>삭제</DetailBtn>
                                 </DetailBtnBox>
                             </DetailTwoBtnBox>

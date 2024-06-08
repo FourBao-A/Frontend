@@ -40,3 +40,13 @@ export const apiMyPage =
             Authorization:token
         }
     })
+
+export const apiDelete =
+    (token,id) => instance.delete('/api/v1/book/delete',{
+        headers:{
+            Authorization:token
+        },
+        params:{
+            id:id
+        }
+    })

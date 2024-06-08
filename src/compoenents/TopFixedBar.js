@@ -11,7 +11,7 @@ function TopFixedBar(){
         <ContainerTopFixedBar>
             <LogOutBtn/>
             
-            <LogoBox onClick={()=>{navigate('/search')}}>
+            <LogoBox onClick={()=>{navigate('/')}}>
                 <img src={logo}/>
                 <h1>북바오</h1>
             </LogoBox>
