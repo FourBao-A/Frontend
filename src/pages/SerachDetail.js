@@ -63,7 +63,7 @@ function SearchDetail(){
                 }
             </Emailinfo>
             <BookState>
-                <p>요청사항</p>
+                <p>기타 요청사항</p>
                 <StateInfo>
                     <p>{info.askFor}</p>
                 </StateInfo>
