@@ -79,8 +79,7 @@ export default Login
 
 const LoginWidthBlock = styled(WidthBlock)`
     background-color: white;
-    font-family: Pretendard;
-`
+`;
 const LoginText = styled.p`
     display: flex;
     width: 390px;

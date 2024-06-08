@@ -371,4 +371,6 @@ position:relative;
 align-self:flex-start;
 top:4px;
 left:8px;
+
+z-index:10;
 `;
