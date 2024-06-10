@@ -26,7 +26,7 @@ function Forms(){
         price:'',
         email:"",
         dealWay:"DIRECT",
-        place:"",
+        dealPlace:"",
         thumbnail:"",
         state:"",
         askFor:""
@@ -56,7 +56,7 @@ function Forms(){
         }
         else{
             setTrade('DELIVERY');
-            setBookInfo(prev=>({...prev,dealWay:"DELIVERY"}))
+            setBookInfo(prev=>({...prev,dealPlace:"",dealWay:"DELIVERY"}))
         }
     }
     const onChange_forms = (event) => {
@@ -109,8 +109,21 @@ function Forms(){
         window.scrollTo(0,0);
         const paths=window.location.pathname.split('/');
         console.log(paths);
-        if(paths[paths.length-1]==='forms')
+        if(paths[paths.length-1]==='forms'){
             setMode('a')
+            setBookInfo({
+                name:"",
+                author:"",
+                publisher:"",
+                price:'',
+                email:"",
+                dealWay:"DIRECT",
+                dealPlace:"",
+                thumbnail:"",
+                state:"",
+                askFor:""
+            })
+        }
         else{
             setMode('r');
             fetchInfo();
@@ -189,7 +202,7 @@ function Forms(){
                         <input 
                         disabled={trade==='DELIVERY'}
                         name='place'
-                        value={bookInfo.place} 
+                        value={bookInfo.dealPlace} 
                         onChange={onChange_forms}/>
                     </ShortInputBox>
                 </InputDiv>
