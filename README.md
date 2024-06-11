@@ -18,32 +18,33 @@
 
 2. 저장소 클론
    터미널을 열고 다음 명령어를 입력하여 저장소를 클론합니다:
-   ```bash
+
    git clone https://github.com/사용자명/저장소명.git
+
 저장소명 폴더로 이동합니다:
-bash
 
-cd 저장소명
- 의존성 설치
-프로젝트의 의존성을 설치합니다:
-bash
+   cd 저장소명 
 
-npm install
- 추가 패키지 설치
+3. 의존성 설치
+   프로젝트의 의존성을 설치합니다:
+
+   npm install
+
+4. 추가 패키지 설치
 react-router-dom 패키지를 설치합니다:
-bash
 
 npm install react-router-dom
+
 styled-components 패키지를 설치합니다:
-bash
 
 npm install styled-components
-프로젝트 시작
+
+5. 프로젝트 시작
 다음 명령어를 입력하여 프로젝트를 시작합니다:
-bash
 
 npm start
+
 브라우저에서 http://localhost:3000으로 이동하여 애플리케이션을 확인하세요.
 
-라이센스
+### 라이센스
 이 프로젝트는 MIT 라이센스 하에 배포됩니다. 자세한 내용은 LICENSE 파일을 참조하세요.    
