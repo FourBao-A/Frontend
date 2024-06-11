@@ -21,16 +21,16 @@
 
    `git clone https://github.com/사용자명/저장소명.git`
 
-저장소명 폴더로 이동합니다:
+3. 저장소명 폴더로 이동합니다:
 
    `cd 저장소명` 
 
-3. 의존성 설치
+4. 의존성 설치
    프로젝트의 의존성을 설치합니다:
 
    `npm install`
 
-4. 추가 패키지 설치
+5. 추가 패키지 설치
    react-router-dom 패키지를 설치합니다:
 
    `npm install react-router-dom`
@@ -39,7 +39,7 @@
 
    `npm install styled-components`
 
-5. 프로젝트 시작
+6. 프로젝트 시작
    다음 명령어를 입력하여 프로젝트를 시작합니다:
 
    `npm start`
