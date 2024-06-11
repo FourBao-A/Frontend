@@ -31,6 +31,7 @@
    `npm install`
 
 5. 추가 패키지 설치
+
    react-router-dom 패키지를 설치합니다:
 
    `npm install react-router-dom`
@@ -39,7 +40,7 @@
 
    `npm install styled-components`
 
-6. 프로젝트 시작
+7. 프로젝트 시작
    다음 명령어를 입력하여 프로젝트를 시작합니다:
 
    `npm start`
