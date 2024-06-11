@@ -1,70 +1,49 @@
-# Getting Started with Create React App
+# 프로젝트 이름
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+이 프로젝트는 [북바오]입니다.
 
-## Available Scripts
+## 시작하기
 
-In the project directory, you can run:
+이 지침을 따라 로컬 머신에 프로젝트를 설정하세요.
 
-### `npm start`
+### 필수 조건
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- [Node.js](https://nodejs.org/)가 설치되어 있어야 합니다.
+- [Git](https://git-scm.com/)이 설치되어 있어야 합니다.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### 설치
 
-### `npm test`
+1. Node.js 설치
+   [Node.js 다운로드 페이지](https://nodejs.org/)에서 운영체제에 맞는 설치 파일을 다운로드하고 설치합니다.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+2. 저장소 클론
+   터미널을 열고 다음 명령어를 입력하여 저장소를 클론합니다:
+   ```bash
+   git clone https://github.com/사용자명/저장소명.git
+저장소명 폴더로 이동합니다:
+bash
 
-### `npm run build`
+cd 저장소명
+ 의존성 설치
+프로젝트의 의존성을 설치합니다:
+bash
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+npm install
+ 추가 패키지 설치
+react-router-dom 패키지를 설치합니다:
+bash
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+npm install react-router-dom
+styled-components 패키지를 설치합니다:
+bash
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+npm install styled-components
+프로젝트 시작
+다음 명령어를 입력하여 프로젝트를 시작합니다:
+bash
 
-### `npm run eject`
+npm start
+브라우저에서 http://localhost:3000으로 이동하여 애플리케이션을 확인하세요.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+라이센스
+이 프로젝트는 MIT 라이센스 하에 배포됩니다. 자세한 내용은 LICENSE 파일을 참조하세요.    
