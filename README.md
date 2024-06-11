@@ -1,7 +1,8 @@
 # 프로젝트 이름
 
 이 프로젝트는 [북바오]입니다.
-<img src="/uploads/1848994ad25765da30fa8ef3684c67bc/캡처.PNG"  width="700" height="370">
+![Favicon](https://github.com/FourBao-A/Frontend/assets/98169691/7fb35214-d7a9-40fd-b7f6-8bbc04ea48ed)
+
 ## 시작하기
 
 이 지침을 따라 로컬 머신에 프로젝트를 설정하세요.
