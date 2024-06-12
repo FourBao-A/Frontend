@@ -15,6 +15,7 @@ function Search(){
     const navigate = useNavigate();
     const [search,setSearch]=useState("");
     const [searchList, setSearchList]=useState([
+        // 검색 화면에서 필요한 책 정보 데이터 정의 
         {
             id:2,
             name:'기초 신호 시스템',
@@ -27,6 +28,7 @@ function Search(){
     ])
 
     const fetchSearch = () => {
+        // 토큰 값으로 서버에 있는 책 정보들을 가지고 오는 함수 
         const token = sessionStorage.getItem('token');
         apiSearch(search,token)
         .then(response=>{
@@ -39,6 +41,7 @@ function Search(){
             navigate('/login');
         });
     }
+    // 책 검색 시 사용되는 함수 
     const onChange_search = (event) =>{
         event.preventDefault();
         setSearch(event.currentTarget.value);

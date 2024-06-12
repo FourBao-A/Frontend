@@ -12,6 +12,7 @@ function ReviseInfo() {
     const location = useLocation();
     const navigate = useNavigate();
     const [formData, setFormData] = useState({name:'', id:'', email:''});
+    // 마이페이지에 필요한 데이터 값 정의 
     const handleChange = (e) => {
         const {name,value} = e.target;
         setFormData(prev=>({
@@ -19,9 +20,9 @@ function ReviseInfo() {
             [name]:value,
         }));
     };
+    // 토큰 값을 가지고 이름과 id는 건드리지 않고 이메일만 수정하는 요청을 서버에 보냄
     const handleSubmit = (e) => {
         e.preventDefault();
-        // 데이터 제출하는 로직 작성 해야함
         const token=sessionStorage.getItem('token');
         let tmp = window.confirm('작성하신 이메일대로 수정하시겠습니까?')    
         
@@ -43,7 +44,7 @@ function ReviseInfo() {
             alert('error');
         });
     }
-
+    // 마이페이지에서 이동 시, 이름과 id는 가져오게끔 설정
     useEffect(() => {
         setFormData({ 
             name: location.state.name,

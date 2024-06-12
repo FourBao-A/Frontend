@@ -5,6 +5,7 @@ import logOut from 'images/LogOut.svg';
 import { useNavigate } from "react-router-dom";
 
 function LogOutBtn(){
+    // 토큰 값을 지우고 로그인 페이지로 돌아가는 버튼 정의 (로그아웃 버튼)
     const navigate=useNavigate();
     const onClick_logout=()=>{
         sessionStorage.removeItem('token');
