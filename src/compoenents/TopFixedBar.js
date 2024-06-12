@@ -6,7 +6,7 @@ import LogOutBtn from "./LogOutBtn";
 
 function TopFixedBar(){
     const navigate=useNavigate();
-
+    // 상단 고정 바 레이아웃 및 위치 조정하는 네비게이트 함수 설정 
     return(
         <ContainerTopFixedBar>
             <LogOutBtn/>

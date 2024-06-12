@@ -10,6 +10,7 @@ function MyPage(){
     const navigate = useNavigate();
     const [historyList, setHistoryList]=useState([
         {   
+            // 마이페이지에 보여야하는 책 정보 데이터 정의 
             id:1,
             name:'기초 신호 시스템',
             author:'이철희',
@@ -22,6 +23,7 @@ function MyPage(){
     
     const fetchMyPage = () => {
         const token=sessionStorage.getItem('token');
+        // 토큰을 가지고 유저 정보와 유저가 가지고 있는 책 정보 리스트를 가져옴 
         apiMyPage(token)
         .then(response=>{
             setUserInfo({ name: response.data.result.name, id: response.data.result.id });
@@ -38,7 +40,7 @@ function MyPage(){
         event.preventDefault();
         const id = Number(event.currentTarget.id);
         const token = sessionStorage.getItem('token');
-
+        // 삭제 버튼 클릭 시 토큰과 고유 id에 따라 책 정보 리스트 삭제
         let tmp = window.confirm('해당 판매글을 삭제하시겠습니까?');
         if(tmp){
             apiDelete(token,id)

@@ -10,10 +10,20 @@ function Login() {
 
     const [loading,setLoading]=useState(false);
     const [formData, setFormData] = useState({
+        //로그인 시 필요한 데이터
         id: '',
         pw:'',
         email:'',
     });
+    /*
+    handleChange(e): 로그인 폼의 입력 값이 변경될 때 호출, formData 상태를 업데이트
+    handleSubmit(e): 로그인 버튼 클릭 시 호출, loading 상태를 true로 설정하여 로그인 요청이 진행 중임을 표시
+    apiLogin(formData) API 함수를 호출하여 로그인을 시도
+    API 응답에 따라:
+        로그인 성공 시, 응답 헤더의 authorization 토큰을 세션 스토리지에 저장, 이메일 정보도 저장한 뒤 홈 페이지로 이동
+        로그인 실패 시, 오류 메시지를 alert으로 표시, loading 상태를 false로 설정
+    오류 발생 시, 오류 메시지를 alert으로 표시, loading 상태를 false로 설정
+    */
     const handleChange = (e) => {
         const {name,value} = e.target;
         setFormData(prev=>({
@@ -23,7 +33,6 @@ function Login() {
     };
     const handleSubmit = (e) =>{
         e.preventDefault();
-        // 데이터 제출하는 로직 작성 해야함 
 
         console.log('submit FormData',formData);
         console.log('before cookie : ',document.cookie);

@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 
 function BottomFixedBar(){
     const navigate = useNavigate();
-
+    // 하단 고정 바 레이아웃 및 위치 조정하는 네비게이트 함수 설정 
     return (
         <ContainerBottomFixedBar>
             <BtnBox onClick={()=>{navigate('/')}}>

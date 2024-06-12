@@ -20,6 +20,7 @@ function Forms(){
     const [mode, setMode]=useState('');
     const [trade,setTrade]=useState('DIRECT');
     const [bookInfo, setBookInfo]=useState({
+        //책 등록 시 필요한 데이터 값 정의 
         name:"",
         author:"",
         publisher:"",
@@ -31,6 +32,13 @@ function Forms(){
         state:"",
         askFor:""
     });
+    /*API 호출 관련 함수
+    fetchInfo(): 책 정보를 가져오는 API를 호출, 응답 데이터로 bookInfo 상태를 업데이트, 토큰 확인 및 로그인 페이지 이동 처리도 포함함
+    onClick_trade(event): 거래 방식 버튼 클릭 시 호출, 선택된 거래 방식에 따라 trade 상태와 bookInfo의 dealWay 및 dealPlace 값을 업데이트
+    onChange_forms(event): 책 정보 입력 폼의 값이 변경될 때 호출, bookInfo 상태를 업데이트
+    onChange_image(event): 이미지 파일 선택 시 호출, 선택된 파일을 S3에 업로드하고 그 URL을 bookInfo의 thumbnail 값으로 업데이트
+    onClick_submit(): 책 정보 등록/수정 버튼 클릭 시 호출, 사용자 확인 후 API를 호출하여 책 정보를 등록하거나 수정
+    */
     const fetchInfo = () => {
         const token = sessionStorage.getItem('token');
         apiGetInfo(token,id)
@@ -104,7 +112,10 @@ function Forms(){
             }
         }
     }
-
+    /*
+    컴포넌트가 마운트될 때 실행되며, 현재 페이지의 URL 경로에 따라 mode를 설정하고 bookInfo 상태를 초기화하거나 fetchInfo()를 호출하여 책 정보를 가져옵니다.
+    이 훅은 location.pathname에 의존하므로, 페이지 이동 시 자동으로 실행됩니다.
+    */
     useEffect(()=>{
         window.scrollTo(0,0);
         const paths=window.location.pathname.split('/');

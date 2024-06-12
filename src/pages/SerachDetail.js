@@ -12,6 +12,7 @@ function SearchDetail(){
     const navigate = useNavigate();
     const id = useParams().id;
     const [info, setInfo]=useState({
+            // 책 상세 페이지에 필요한 데이터 정의 
             name:'',
             author:'',
             publisher:'',
@@ -30,6 +31,7 @@ function SearchDetail(){
     },[]);
 
     const fetchInfo = () => {
+        // 토큰 값을 가지고 책에 대한 정보를 가져옴 
         const token = sessionStorage.getItem('token');
         apiGetInfo(token,id)
         .then(response=>{
