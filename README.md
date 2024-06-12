@@ -37,25 +37,25 @@
 해당 페이지 내에선 구매자가 작성한 글 수정 또는 삭제가 가능합니다. 또한 '회원정보 수정' 버튼을 클릭하면 이메일 주소를 수정하는 것이 가능하며, 수정했을 시 다음에 로그인할 때는 수정된 이메일로 로그인이 가능합니다.
 
 <br><br><br>
-## 전반적인 코드 설명
+## 구성파일 설명
 
-public 파일: 이미지 및 html <head> 태그를 담당함.
+src/public : favicon 이미지 및 index.html이 담겨있는 디렉토리
 
-src/compoenents 파일: 해당 웹에 자주 쓰이는 컴포넌트를 담당하는 코드 (위, 아래 박스 및 로그아웃)
+src/compoenents : 해당 웹에 자주 쓰이는 JS 컴포넌트 파일들의 디렉토리 (상단, 하단바 및 로그아웃 버튼)
 
-src/hooks 파일: 페이지 별로 로그인 확인하는 코드
+src/hooks/useLogin.js: 페이지 별로 로그인 확인하는 커스텀 useHooks JS파일
 
-src/images 파일: 웹에 쓰이는 이미지 파일 모음
+src/images : 웹에 쓰이는 이미지 파일들의 디렉토리
 
-src/pages 파일: 각 페이지별 기능을 하는 코드 모음
+src/pages : 각 페이지별 JS 파일들의 디렉토리
 
-src/styles 파일: 자주 사용되는 css 스타일 코드 모음
+src/styles : 자주 사용되는 css 스타일컴포넌트 파일들의 디렉토리
 
-src/utils 파일: 도서 이미지 등록에 사용되는 함수 코드
+src/utils/uploadS3.JS : AWS 버킷기능을 통해 도서 이미지 등록기능을 구현하는 데에 사용되는 함수 JS파일
 
 src/apis.js : 각 페이지별 필요한 api 코드 모음
 
-src/app.js: 전반적인 루트 컴포넌트 담당하는 파일
+src/App.js: pages폴더의 파일들을 라우팅해주는 root 컴포넌트 파일
 
 <br><br><br>
 ## 로컬환경에서 서비스 이용하기
